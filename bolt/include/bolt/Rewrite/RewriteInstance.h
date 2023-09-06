@@ -509,8 +509,8 @@ private:
   };
 
   /// AArch64 PLT sections.
-  const PLTSectionInfo AArch64_PLTSections[3] = {
-      {".plt"}, {".iplt"}, {nullptr}};
+  const PLTSectionInfo AArch64_PLTSections[4] = {
+      {".plt"}, {".plt.got"}, {".iplt"}, {nullptr}};
 
   /// RISCV PLT sections.
   const PLTSectionInfo RISCV_PLTSections[3] = {{".plt"}, {nullptr}};

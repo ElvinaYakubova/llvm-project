@@ -812,13 +812,15 @@ public:
     return IndirectBranchType::POSSIBLE_PIC_JUMP_TABLE;
   }
 
-  ///  Matches PLT entry pattern and returns the associated GOT entry address.
+  ///  Matches PLT/PLT.GOT entry pattern and returns the associated GOT entry address.
   ///  Typical PLT entry looks like the following:
   ///
   ///    adrp    x16, 230000
   ///    ldr     x17, [x16, #3040]
   ///    add     x16, x16, #0xbe0
   ///    br      x17
+  ///
+  ///  PLT.GOT ently looks the same, but without add instruction
   ///
   uint64_t analyzePLTEntry(MCInst &Instruction, InstructionIterator Begin,
                            InstructionIterator End,
