@@ -899,7 +899,7 @@ void RewriteInstance::discoverFileObjects() {
   unsigned AnonymousId = 0;
 
   // Regex object for matching cold fragments.
-  const Regex ColdFragment(".*\\.cold(\\.[0-9]+)?");
+  const Regex ColdFragment(".*\\.cold(\\.[0-9]+)?$");
 
   const auto SortedSymbolsEnd =
       LastSymbol == SortedSymbols.end() ? LastSymbol : std::next(LastSymbol);
@@ -1370,7 +1370,7 @@ void RewriteInstance::registerFragments() {
     for (StringRef Name : Function.getNames()) {
       StringRef BaseName, Suffix;
       std::tie(BaseName, Suffix) = Name.split('/');
-      const size_t ColdSuffixPos = BaseName.find(".cold");
+      const size_t ColdSuffixPos = BaseName.rfind(".cold");
       if (ColdSuffixPos == StringRef::npos)
         continue;
       // For cold function with local (foo.cold/1) symbol, prefer a parent with
